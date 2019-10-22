@@ -3,22 +3,41 @@ const dropOperator = (str) => {
   return newStr
 }
 
+const createNewDate = (originDate, parsedDiff) => {
+  const parsedNewDate = originDate + parsedDiff;
+  return new Date (parsedNewDate)
+}
+
 const dateAdder = (date, diff) => {
   const originDate = Date.parse(date);
   if(diff.includes('s')) {
     const seconds = Number(dropOperator(diff));
     const parsedSeconds = seconds * 1000;
-    const parsedNewDate = originDate + parsedSeconds;
-    const newDate = new Date (parsedNewDate)
-    return newDate
+    return createNewDate(originDate, parsedSeconds)
   }
 
   if(diff.includes('m')) {
     const minutes = Number(dropOperator(diff));
-    const parseMinutes = minutes * 60000;
-    const parsedNewDate = originDate + parseMinutes;
-    const newDate = new Date(parsedNewDate)
-    return newDate
+    const parsedMinutes = minutes * 60000;
+    return createNewDate(originDate, parsedMinutes)
+  }
+
+  if(diff.includes('h')) {
+    const hours = Number(dropOperator(diff));
+    const parsedHours = hours * 3600000;
+    return createNewDate(originDate, parsedHours)
+  }
+
+  if(diff.includes('d')) {
+    const days = Number(dropOperator(diff));
+    const parsedDays = days * 86400000;
+    return createNewDate(originDate, parsedDays)
+  }
+
+  if(diff.includes('w')) {
+    const weeks = Number(dropOperator(diff));
+    const parsedWeeks = weeks * 604800000;
+    return createNewDate(originDate, parsedWeeks)
   }
 }
 
