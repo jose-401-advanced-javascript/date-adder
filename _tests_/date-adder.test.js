@@ -7,6 +7,8 @@ describe('date adder', () => {
   const hoursDiff = '2h';
   const daysDiff = '2d';
   const weekDiff = '1w';
+  const monthDiff = '1M';
+  const yearDiff = '1y';
 
   it('adds seconds to a time object', () => {
     const newDate = dateAdder(testDate, secondsDiff);
@@ -31,5 +33,15 @@ describe('date adder', () => {
   it('adds a week to a time object', () => {
     const newDate = dateAdder(testDate, weekDiff);
     expect(newDate.toUTCString()).toBe('Mon, 28 Oct 2019 07:00:00 GMT');
+  });
+
+  it('add a month to a time object', () => {
+    const newDate = dateAdder(testDate, monthDiff);
+    expect(newDate.toUTCString()).toBe('Thu, 21 Nov 2019 07:00:00 GMT');
+  });
+
+  it('add a year to a time object', () => {
+    const newDate = dateAdder(testDate, yearDiff);
+    expect(newDate.toUTCString()).toBe('Wed, 21 Oct 2020 07:00:00 GMT');
   });
 });

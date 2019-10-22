@@ -39,6 +39,18 @@ const dateAdder = (date, diff) => {
     const parsedWeeks = weeks * 604800000;
     return createNewDate(originDate, parsedWeeks)
   }
+
+  if(diff.includes('M')) {
+    const months = Number(dropOperator(diff));
+    const parsedMonths = months * 2678400000;
+    return createNewDate(originDate, parsedMonths)
+  }
+
+  if(diff.includes('y')) {
+    const years = Number(dropOperator(diff));
+    const parsedYears = years * 31622400000;
+    return createNewDate(originDate, parsedYears)
+  }
 }
 
 module.exports = { dateAdder }
